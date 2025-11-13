@@ -80,8 +80,11 @@ class _NotePageState extends State<NotePage> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: true,
-      onPopInvoked: (_) => _onBack(),
+      canPop: false,
+      onPopInvoked: (didPop) {
+        if (didPop) return;
+        _onBack();
+      },
       child: BlocConsumer<NoteBloc, NoteState>(
         listener: (context, state) => _displaylistener(context, state),
         builder: (context, state) {
@@ -109,9 +112,8 @@ class _NotePageState extends State<NotePage> {
     );
   }
 
-  Future<bool> _onBack() async {
+  void _onBack() {
     context.read<NoteBloc>().add(PopNoteAction(currentNote, originNote));
-    return true;
   }
 
   void _displaylistener(BuildContext context, NoteState state) {
