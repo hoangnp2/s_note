@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:s_note/core/core.dart';
+import 'package:s_note/l10n/app_localizations.dart';
 
 class CommonEmptyNotes extends StatelessWidget {
   const CommonEmptyNotes(this.drawerViewNote) : super(key: null);
@@ -18,18 +19,18 @@ class CommonEmptyNotes extends StatelessWidget {
           onRefresh: () => AppFunction.onRefresh(context),
           child: _emptySection(
             AppIcons.emptyNote,
-            'Note you add appear here',
+            AppLocalizations.of(context)!.noteYouAddAppearHere,
           ),
         );
       case DrawerSectionView.archive:
         return _emptySection(
           AppIcons.emptyArchivesNote,
-          'Your archived notes appear here',
+          AppLocalizations.of(context)!.yourArchivedNotesAppearHere,
         );
       case DrawerSectionView.trash:
         return _emptySection(
           AppIcons.emptyTrashNote,
-          'No Notes in Recycle Bin',
+          AppLocalizations.of(context)!.noNotesInRecycleBin,
         );
     }
   }

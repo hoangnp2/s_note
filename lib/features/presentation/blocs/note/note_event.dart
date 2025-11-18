@@ -1,5 +1,6 @@
 part of 'note_bloc.dart';
 
+
 sealed class NoteEvent extends Equatable {
   const NoteEvent();
 
@@ -7,7 +8,11 @@ sealed class NoteEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class EmptyInputs extends NoteEvent {}
+final class EmptyInputs extends NoteEvent {
+  final AppLocalizations l10n;
+
+  const EmptyInputs(this.l10n);
+}
 
 final class LoadNotes extends NoteEvent {
   final DrawerSectionView drawerSectionView;
@@ -33,10 +38,9 @@ final class RefreshNotes extends NoteEvent {
 
 final class AddNote extends NoteEvent {
   final Note note;
+  final AppLocalizations l10n;
 
-  const AddNote(
-    this.note,
-  );
+  const AddNote(this.note, this.l10n);
   @override
   List<Object> get props => [note];
 }
@@ -54,10 +58,9 @@ final class GetNoteById extends NoteEvent {
 
 final class UpdateNote extends NoteEvent {
   final Note note;
+  final AppLocalizations l10n;
 
-  const UpdateNote(
-    this.note,
-  );
+  const UpdateNote(this.note, this.l10n);
 
   @override
   List<Object> get props => [note];
@@ -65,10 +68,9 @@ final class UpdateNote extends NoteEvent {
 
 final class DeleteNote extends NoteEvent {
   final String noteId;
+  final AppLocalizations l10n;
 
-  const DeleteNote(
-    this.noteId,
-  );
+  const DeleteNote(this.noteId, this.l10n);
   @override
   List<Object> get props => [noteId];
 }
@@ -86,10 +88,12 @@ final class ModifColorNote extends NoteEvent {
 final class MoveNote extends NoteEvent {
   final Note? note;
   final StatusNote newStatus;
+  final AppLocalizations l10n;
 
   const MoveNote(
     this.note,
     this.newStatus,
+    this.l10n,
   );
 
   @override
@@ -101,11 +105,14 @@ final class UndoMoveNote extends NoteEvent {}
 final class PopNoteAction extends NoteEvent {
   final Note currentNote;
   final Note originNote;
+  final AppLocalizations l10n;
 
-  const PopNoteAction(
-    this.currentNote,
-    this.originNote,
-  );
+const PopNoteAction({
+    required this.currentNote,
+    required this.originNote,
+    required this.l10n,
+  });
+
   @override
   List<Object> get props => [currentNote, originNote];
 }

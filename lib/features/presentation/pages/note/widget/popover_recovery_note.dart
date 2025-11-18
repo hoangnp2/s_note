@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:s_note/l10n/app_localizations.dart';
 
 import '../../../../../core/core.dart';
 import '../../../../domain/entities/note.dart';
@@ -34,7 +35,7 @@ class PopoverRecoveryNote extends StatelessWidget {
   }
 
   void _onRestoreNote(BuildContext context) {
-    context.read<NoteBloc>().add(MoveNote(note, StatusNote.undefined));
+    context.read<NoteBloc>().add(MoveNote(note, StatusNote.undefined,AppLocalizations.of(context)!));
     context.pop();
   }
 }

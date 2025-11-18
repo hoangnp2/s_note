@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:s_note/l10n/app_localizations.dart';
 
 import '../../../features/presentation/blocs/blocs.dart';
 import '../../core.dart';
@@ -47,11 +48,11 @@ class AppDrawer extends StatelessWidget {
         TextSpan(
           children: [
             TextSpan(
-              text: 'KeepUp Note',
+              text: AppLocalizations.of(context)!.keepUpNote,
               style: const TextStyle().copyWith(fontWeight: FontWeight.bold),
             ),
             const TextSpan(text: ' '),
-            const TextSpan(text: 'Note'),
+            TextSpan(text: AppLocalizations.of(context)!.note),
           ],
         ),
       ),

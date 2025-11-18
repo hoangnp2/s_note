@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:s_note/l10n/app_localizations.dart';
 
 import '../../../features/domain/entities/note.dart';
 import '../../../features/presentation/blocs/blocs.dart';
@@ -8,7 +9,9 @@ import '../../util/util.dart';
 
 class NotesSearching extends SearchDelegate {
   @override
-  String? get searchFieldLabel => 'Search your notes';
+  String? get searchFieldLabel => _searchFieldLabel;
+
+  String? _searchFieldLabel;
 
   @override
   TextStyle? get searchFieldStyle => const TextStyle().copyWith(fontSize: 18.0);
@@ -25,15 +28,21 @@ class NotesSearching extends SearchDelegate {
       );
 
   @override
-  Widget buildResults(BuildContext context) => _buildSearchResults(context);
+  Widget buildResults(BuildContext context) {
+    _searchFieldLabel = AppLocalizations.of(context)!.searchYourNotes;
+    return _buildSearchResults(context);
+  }
 
   @override
-  Widget buildSuggestions(BuildContext context) => _buildSearchResults(context);
+  Widget buildSuggestions(BuildContext context) {
+    _searchFieldLabel = AppLocalizations.of(context)!.searchYourNotes;
+    return _buildSearchResults(context);
+  }
 
   Widget _buildSearchResults(BuildContext context) {
     if (query.isEmpty) return const SizedBox.shrink();
 
-    context.read<SearchCubit>().searchFetch(query);
+    context.read<SearchCubit>().searchFetch(query,AppLocalizations.of(context)!);
 
     return BlocBuilder<SearchCubit, SearchState>(
       builder: (context, state) {

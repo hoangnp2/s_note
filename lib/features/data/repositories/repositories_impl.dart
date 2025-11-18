@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:logger/logger.dart';
 
 import '../../../core/util/util.dart';
 import '../../domain/entities/note.dart';
@@ -8,6 +9,7 @@ import '../model/note_model.dart';
 
 class NoteRepositoriesImpl implements NoteRepositories {
   final NoteLocalDataSourse noteLocalDataSourse;
+  final Logger logger = Logger();
 
   NoteRepositoriesImpl({
     required this.noteLocalDataSourse,
@@ -17,6 +19,8 @@ class NoteRepositoriesImpl implements NoteRepositories {
   Future<Either<Failure, List<Note>>> getAllNotes() async {
     try {
       final response = await noteLocalDataSourse.getAllNote();
+      logger.i('Get all notes successfully');
+      for (var note in response) { logger.i(note.content); }
       return Right(response);
     } on NoDataException {
       return Left(NoDataFailure());
@@ -27,6 +31,7 @@ class NoteRepositoriesImpl implements NoteRepositories {
   Future<Either<Failure, Note>> getNoteById(String noteId) async {
     try {
       final response = await noteLocalDataSourse.getNoteById(noteId);
+      logger.i('Get note by id successfully');
       return Right(response);
     } on NoDataException {
       return Left(NoDataFailure());
@@ -48,6 +53,7 @@ class NoteRepositoriesImpl implements NoteRepositories {
           stateNote: note.stateNote,
         );
         await noteLocalDataSourse.addNote(convertToNoteModel);
+        logger.i('Add note successfully');
         return const Right(unit);
       }
     } on NoDataException {
@@ -67,6 +73,7 @@ class NoteRepositoriesImpl implements NoteRepositories {
         stateNote: note.stateNote,
       );
       await noteLocalDataSourse.updateNote(convertToNoteModel);
+      logger.i('Update note successfully');
       return const Right(unit);
     } on NoDataException {
       return Left(NoDataFailure());
@@ -77,6 +84,7 @@ class NoteRepositoriesImpl implements NoteRepositories {
   Future<Either<Failure, Unit>> deleteNote(String noteId) async {
     try {
       await noteLocalDataSourse.deleteNote(noteId);
+      logger.i('Delete note successfully');
       return const Right(unit);
     } on NoDataException {
       return Left(NoDataFailure());

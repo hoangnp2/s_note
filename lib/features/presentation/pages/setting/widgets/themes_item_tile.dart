@@ -5,6 +5,8 @@ import 'package:s_note/features/presentation/blocs/blocs.dart';
 import '../../../../../core/core.dart';
 import 'widgets.dart';
 
+import 'package:s_note/l10n/app_localizations.dart';
+
 class ThemesItemTile extends StatelessWidget {
   const ThemesItemTile({super.key});
 
@@ -17,7 +19,7 @@ class ThemesItemTile extends StatelessWidget {
           (appTheme) => appTheme.mode == currentTheme,
         );
         return ListTile(
-          title: const Text('Themes'),
+          title: Text(AppLocalizations.of(context)!.theme),
           trailing: Text(
             selectedTheme.title,
             style: context.textTheme.bodyLarge,
@@ -35,7 +37,7 @@ class ThemesItemTile extends StatelessWidget {
       builder: (BuildContext context) {
         return AlertDialog(
           contentPadding: const EdgeInsets.symmetric(vertical: 20),
-          title: const Text('Choose Theme'),
+          title: Text(AppLocalizations.of(context)!.chooseTheme),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: List.generate(

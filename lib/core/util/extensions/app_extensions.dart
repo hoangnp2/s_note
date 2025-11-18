@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:s_note/l10n/app_localizations.dart';
 
 import '../../../features/data/datasources/local/hive/state_note_hive.dart';
 import '../../../features/presentation/blocs/blocs.dart';
@@ -26,16 +27,16 @@ extension StateGridViewIcon on GridStatus {
 }
 
 extension DrawerViewsExtensions on DrawerViews {
-  String get name {
+  String name(BuildContext context) {
     switch (this) {
       case DrawerViews.home:
-        return 'Notes';
+        return AppLocalizations.of(context)!.notes;
       case DrawerViews.archive:
-        return 'Archive';
+        return AppLocalizations.of(context)!.archive;
       case DrawerViews.trash:
-        return 'Trash';
+        return AppLocalizations.of(context)!.trash;
       case DrawerViews.setting:
-        return 'Setting';
+        return AppLocalizations.of(context)!.setting;
     }
   }
 

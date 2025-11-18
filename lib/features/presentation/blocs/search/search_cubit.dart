@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:s_note/features/domain/entities/note.dart';
+import 'package:s_note/l10n/app_localizations.dart';
 
 import '../../../../core/core.dart';
 import '../../../domain/usecases/get_notes.dart';
@@ -13,13 +14,13 @@ class SearchCubit extends Cubit<SearchState> {
     required this.getNotes,
   }) : super(SearchInitial());
 
-  void searchFetch(String query) async {
+  void searchFetch(String query, AppLocalizations appLocalizations) async {
     emit(SearchLoading());
 
     final failureOrLoaded = await getNotes();
 
     failureOrLoaded.fold(
-      (failure) => emit(SearchError(_mapFailureMsg(failure))),
+      (failure) => emit(SearchError(_mapFailureMsg(failure, appLocalizations))),
       (listOfNotes) {
         final List<Note> filteredList = listOfNotes.where((note) {
           final bool isInTrash = note.stateNote == StatusNote.trash;
@@ -41,14 +42,14 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   //=> // Map Return : Failure Msg
-  String _mapFailureMsg(Failure failure) {
+  String _mapFailureMsg(Failure failure, AppLocalizations appLocalizations) {
     switch (failure.runtimeType) {
       case DatabaseFailure:
-        return DATABASE_FAILURE_MSG;
+        return appLocalizations.databaseFailure;
       case NoDataFailure:
-        return NO_DATA_FAILURE_MSG;
+        return appLocalizations.noData;
       default:
-        return 'Unexpected Error , Please try again later . ';
+        return 'Unexpected Error';
     }
   }
 }

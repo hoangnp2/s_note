@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:s_note/l10n/app_localizations.dart';
 
 import '../../../../core/core.dart';
 import '../../../domain/entities/note.dart';
@@ -113,7 +114,7 @@ class _NotePageState extends State<NotePage> {
   }
 
   void _onBack() {
-    context.read<NoteBloc>().add(PopNoteAction(currentNote, originNote));
+    context.read<NoteBloc>().add(PopNoteAction(currentNote: currentNote,originNote:  originNote,l10n: AppLocalizations.of(context)!));
   }
 
   void _displaylistener(BuildContext context, NoteState state) {

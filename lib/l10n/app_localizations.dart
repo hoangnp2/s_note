@@ -98,11 +98,167 @@ abstract class AppLocalizations {
     Locale('vi')
   ];
 
-  /// No description provided for @helloWorld.
+  /// No description provided for @setting.
   ///
   /// In en, this message translates to:
-  /// **'Hello World!'**
-  String get helloWorld;
+  /// **'Setting'**
+  String get setting;
+
+  /// No description provided for @displayOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Display option'**
+  String get displayOption;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @theme.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get theme;
+
+  /// No description provided for @searchYourNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Search your notes'**
+  String get searchYourNotes;
+
+  /// No description provided for @trash.
+  ///
+  /// In en, this message translates to:
+  /// **'Trash'**
+  String get trash;
+
+  /// No description provided for @send.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get send;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @vietnamese.
+  ///
+  /// In en, this message translates to:
+  /// **'Vietnamese'**
+  String get vietnamese;
+
+  /// No description provided for @chooseTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Theme'**
+  String get chooseTheme;
+
+  /// No description provided for @keepUpNote.
+  ///
+  /// In en, this message translates to:
+  /// **'KeepUp Note'**
+  String get keepUpNote;
+
+  /// No description provided for @note.
+  ///
+  /// In en, this message translates to:
+  /// **'Note'**
+  String get note;
+
+  /// No description provided for @notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get notes;
+
+  /// No description provided for @archive.
+  ///
+  /// In en, this message translates to:
+  /// **'Archive'**
+  String get archive;
+
+  /// No description provided for @noteYouAddAppearHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Note you add appear here'**
+  String get noteYouAddAppearHere;
+
+  /// No description provided for @yourArchivedNotesAppearHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Your archived notes appear here'**
+  String get yourArchivedNotesAppearHere;
+
+  /// No description provided for @noNotesInRecycleBin.
+  ///
+  /// In en, this message translates to:
+  /// **'No Notes in Recycle Bin'**
+  String get noNotesInRecycleBin;
+
+  /// No description provided for @databaseFailure.
+  ///
+  /// In en, this message translates to:
+  /// **'Please try again later .'**
+  String get databaseFailure;
+
+  /// No description provided for @noData.
+  ///
+  /// In en, this message translates to:
+  /// **'No Data'**
+  String get noData;
+
+  /// No description provided for @addSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Note Added Successfully'**
+  String get addSuccess;
+
+  /// No description provided for @emptyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Empty Note Discarded'**
+  String get emptyNote;
+
+  /// No description provided for @deleteSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Note Deleted Successfully'**
+  String get deleteSuccess;
+
+  /// No description provided for @moveNoteToTrash.
+  ///
+  /// In en, this message translates to:
+  /// **'Note Move to Trash'**
+  String get moveNoteToTrash;
+
+  /// No description provided for @noteUnarchived.
+  ///
+  /// In en, this message translates to:
+  /// **'Note unarchived'**
+  String get noteUnarchived;
+
+  /// No description provided for @updateSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Note Updated Successfully'**
+  String get updateSuccess;
+
+  /// No description provided for @noteArchived.
+  ///
+  /// In en, this message translates to:
+  /// **'Note Archive'**
+  String get noteArchived;
+
+  /// No description provided for @noteArchivedAndUnpinned.
+  ///
+  /// In en, this message translates to:
+  /// **'Note Archive And unpinned'**
+  String get noteArchivedAndUnpinned;
 }
 
 class _AppLocalizationsDelegate

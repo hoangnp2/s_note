@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:s_note/core/core.dart';
+import 'package:s_note/l10n/app_localizations.dart';
 
 import '../../../../domain/entities/note.dart';
 import '../../../blocs/blocs.dart';
@@ -44,6 +45,6 @@ class IconArchiveStatus extends StatelessWidget {
         ? StatusNote.undefined
         : StatusNote.archived;
 
-    context.read<NoteBloc>().add(MoveNote(currentNote, newNoteStatus));
+    context.read<NoteBloc>().add(MoveNote(currentNote, newNoteStatus,AppLocalizations.of(context)!));
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:s_note/l10n/app_localizations.dart';
 
 import '../../features/domain/entities/note.dart';
 import '../../features/presentation/blocs/blocs.dart';
@@ -29,6 +30,6 @@ class ItemDismissibleNote extends StatelessWidget {
   }
 
   void _onDismissed(BuildContext context, Note itemNote) {
-    context.read<NoteBloc>().add(MoveNote(itemNote, StatusNote.archived));
+    context.read<NoteBloc>().add(MoveNote(itemNote, StatusNote.archived,AppLocalizations.of(context)!));
   }
 }

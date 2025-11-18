@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:s_note/l10n/app_localizations.dart';
 import '../../features/presentation/blocs/blocs.dart';
 import '../core.dart';
 
@@ -8,10 +9,9 @@ class CommonSearchBar extends StatelessWidget {
     super.key,
   });
 
-  final String hintText = 'Search your notes';
-
   @override
   Widget build(BuildContext context) {
+    final String hintText = AppLocalizations.of(context)!.searchYourNotes;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: SizedBox(

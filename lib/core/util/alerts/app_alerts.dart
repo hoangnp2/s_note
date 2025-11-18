@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:s_note/l10n/app_localizations.dart';
 
 import '../../../features/domain/entities/note.dart';
 import '../../../features/presentation/blocs/blocs.dart';
@@ -60,7 +61,7 @@ class AppAlerts {
           final currentNote = noteStatusState.currentNote;
           context
               .read<NoteBloc>()
-              .add(MoveNote(currentNote, StatusNote.undefined));
+              .add(MoveNote(currentNote, StatusNote.undefined,AppLocalizations.of(context)!));
         }
       },
     );
@@ -82,7 +83,7 @@ class AppAlerts {
       onPressed: () {
         context.pop();
         context.pop();
-        context.read<NoteBloc>().add(DeleteNote(note.id));
+        context.read<NoteBloc>().add(DeleteNote(note.id,AppLocalizations.of(context)!));
         context.read<NoteBloc>().add(RefreshNotes(DrawerSelect.drawerSection));
       },
     );

@@ -12,6 +12,7 @@ import '../../../domain/usecases/get_note_by_id.dart';
 import '../../../domain/usecases/get_notes.dart';
 import '../../../domain/usecases/update_note.dart';
 
+import 'package:s_note/l10n/app_localizations.dart';
 part 'note_event.dart';
 part 'note_state.dart';
 
@@ -72,13 +73,13 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
           _mapFailureMsg(failure),
           DrawerSelect.drawerSection,
         )),
-        (_) => (const SuccessState(ADD_SUCCESS_MSG)),
+        (_) => (SuccessState(event.l10n.addSuccess)),
       ),
     );
   }
 
   _onEmptyInputs(EmptyInputs event, Emitter<NoteState> emit) {
-    emit(const EmptyInputsState(EMPTY_TEXT_MSG));
+    emit(EmptyInputsState(event.l10n.emptyNote));
   }
 
   _onGetById(GetNoteById event, Emitter<NoteState> emit) async {
@@ -145,10 +146,12 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
 
     if (_isNewNote && isNoteEmpty) {
       // New note is empty, emit an empty input state
-      add(EmptyInputs());
+      add(EmptyInputs(event.l10n));
     } else if (_isNewNote || (!_isNewNote && isDirty)) {
       // Existing note is dirty, update the note
-      _isNewNote ? add(AddNote(currentNote)) : add(UpdateNote(updatedNote));
+      _isNewNote
+          ? add(AddNote(currentNote, event.l10n))
+          : add(UpdateNote(updatedNote, event.l10n));
     }
 
     // Notify to close the details page

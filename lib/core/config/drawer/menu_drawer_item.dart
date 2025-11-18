@@ -16,7 +16,7 @@ class MenuDrawerItem extends StatelessWidget {
       padding: const EdgeInsets.only(right: 10, left: 10),
       child: ListTile(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-        title: Text(drawerViews.name),
+        title: Text(drawerViews.name(context)),
         leading: drawerViews.icon,
         onTap: () => _onTapDrawer(context, isDrawerSelected),
         selected: isDrawerSelected,
