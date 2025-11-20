@@ -89,4 +89,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get noteArchivedAndUnpinned => 'Ghi chú đã được lưu trữ và bỏ ghim';
+
+  @override
+  String get setRemider => 'Cài đặt nhắc nhở';
 }

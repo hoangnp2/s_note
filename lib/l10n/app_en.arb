@@ -25,5 +25,6 @@
   "noteUnarchived": "Note unarchived",
   "updateSuccess": "Note Updated Successfully",
   "noteArchived": "Note Archive",
-  "noteArchivedAndUnpinned": "Note Archive And unpinned"
+  "noteArchivedAndUnpinned": "Note Archive And unpinned",
+  "setRemider": "Set remider"
 }

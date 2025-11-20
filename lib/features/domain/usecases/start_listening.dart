@@ -14,7 +14,7 @@ class StartListeningUsecase {
   Future<Either<Failure, Stream<SpeechToTextResult>>> call({
     SpeechToTextConfig? config,
   }) async {
-    // Sử dụng config mặc định nếu không được cung cấp
+    // Use default config if not provided
     final speechConfig = config ?? const SpeechToTextConfig.defaultVi();
     
     return await speechToTextRepository.startListening(config: speechConfig);

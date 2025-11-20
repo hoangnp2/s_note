@@ -25,5 +25,6 @@
   "noteUnarchived": "Ghi chú đã được hủy lưu trữ",
   "updateSuccess": "Cập nhật ghi chú thành công",
   "noteArchived": "Ghi chú đã được lưu trữ",
-  "noteArchivedAndUnpinned": "Ghi chú đã được lưu trữ và bỏ ghim"
+  "noteArchivedAndUnpinned": "Ghi chú đã được lưu trữ và bỏ ghim",
+  "setRemider": "Cài đặt nhắc nhở"
 }

@@ -1,4 +1,4 @@
-// Barrel export file cho tất cả các Speech to Text usecases
+// Barrel export file for all Speech to Text usecases
 export 'initialize_speech_to_text.dart';
 export 'get_speech_to_text_permission.dart';
 export 'start_listening.dart';

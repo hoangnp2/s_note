@@ -259,6 +259,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Note Archive And unpinned'**
   String get noteArchivedAndUnpinned;
+
+  /// No description provided for @setRemider.
+  ///
+  /// In en, this message translates to:
+  /// **'Set remider'**
+  String get setRemider;
 }
 
 class _AppLocalizationsDelegate

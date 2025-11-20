@@ -24,6 +24,7 @@ class _NotePageState extends State<NotePage> {
   final _titleController = TextEditingController();
   final _contentController = TextEditingController();
   final _undoController = UndoHistoryController();
+  bool _isReminderPanelVisible = true;
 
   Color get noteColor {
     final noteBloc = context.read<NoteBloc>();
@@ -82,7 +83,7 @@ class _NotePageState extends State<NotePage> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvoked: (didPop) {
+      onPopInvokedWithResult: (didPop, _) {
         if (didPop) return;
         _onBack();
       },
@@ -91,6 +92,12 @@ class _NotePageState extends State<NotePage> {
         builder: (context, state) {
           return Scaffold(
             backgroundColor: noteColor,
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerFloat,
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {},
+              child: const Icon(Icons.mic),
+            ),
             bottomNavigationBar: CustomBottomBar(currentNote, _undoController),
             appBar: AppBarNote(press: _onBack),
             body: _buildBody(),
@@ -103,11 +110,63 @@ class _NotePageState extends State<NotePage> {
   Widget _buildBody() {
     return SafeArea(
       child: SingleChildScrollView(
-        child: TextFieldsForm(
-          controllerTitle: _titleController,
-          controllerContent: _contentController,
-          undoController: _undoController,
-          autofocus: false,
+        child: Column(
+          children: [
+            _buildReminderPanel(),
+            TextFieldsForm(
+              controllerTitle: _titleController,
+              controllerContent: _contentController,
+              undoController: _undoController,
+              autofocus: false,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildReminderPanel() {
+    return Visibility(
+      visible: _isReminderPanelVisible,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+        child: Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: Colors.grey.withAlpha(25),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Row(
+            children: [
+              const Icon(
+                Icons.notifications_none,
+                size: 20,
+              ),
+              const SizedBox(width: 12),
+              Column(
+                children: [
+                  Text(AppLocalizations.of(context)!.setRemider,
+                  style: TextStyle(fontSize: 18),),
+                  const Text(
+                    'Today, 8:00 PM',
+                    style: TextStyle(fontSize: 14),
+                  ),
+                ],
+              ),
+              const Spacer(),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _isReminderPanelVisible = false;
+                  });
+                },
+                child: const Icon(
+                  Icons.close,
+                  size: 20,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

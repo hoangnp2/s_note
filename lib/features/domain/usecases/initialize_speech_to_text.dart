@@ -10,24 +10,24 @@ class InitializeSpeechToTextUsecase {
     required this.speechToTextRepository,
   });
 
-  /// Khởi tạo speech to text service
+  /// Initialize speech to text service
   Future<Either<Failure, bool>> call() async {
     return await speechToTextRepository.initialize();
   }
 
-  /// Kiểm tra xem speech service có khả dụng không
+  /// Check if speech service is available
   Future<Either<Failure, bool>> isAvailable() async {
     return await speechToTextRepository.isAvailable();
   }
 
-  /// Lấy danh sách các ngôn ngữ được hỗ trợ
+  /// Get list of supported languages
   Future<Either<Failure, List<String>>> getSupportedLocales() async {
     return await speechToTextRepository.getSupportedLocales();
   }
 
-  /// Khởi tạo đầy đủ (kiểm tra khả dụng + khởi tạo)
+  /// Full initialization (check availability + initialize)
   Future<Either<Failure, bool>> initializeComplete() async {
-    // Kiểm tra khả dụng trước
+    // Check availability first
     final availableResult = await speechToTextRepository.isAvailable();
     
     return availableResult.fold(
@@ -37,7 +37,7 @@ class InitializeSpeechToTextUsecase {
           return Left(SpeechToTextFailure('Speech to text service is not available'));
         }
         
-        // Nếu khả dụng, tiến hành khởi tạo
+        // If available, proceed with initialization
         return await speechToTextRepository.initialize();
       },
     );

@@ -10,17 +10,13 @@ class GetSpeechToTextPermissionUsecase {
     required this.speechToTextRepository,
   });
 
-  /// Kiểm tra quyền truy cập microphone hiện tại
+  /// Check current microphone access permission
   Future<Either<Failure, bool>> checkPermission() async {
     return await speechToTextRepository.checkPermission();
   }
 
-  /// Yêu cầu quyền truy cập microphone
-  Future<Either<Failure, bool>> requestPermission() async {
-    return await speechToTextRepository.requestPermission();
-  }
 
-  /// Kiểm tra và yêu cầu quyền nếu cần thiết
+  /// Check and request permission if necessary
   Future<Either<Failure, bool>> ensurePermission() async {
     final checkResult = await speechToTextRepository.checkPermission();
     
@@ -30,7 +26,7 @@ class GetSpeechToTextPermissionUsecase {
         if (hasPermission) {
           return const Right(true);
         } else {
-          return await speechToTextRepository.requestPermission();
+          return Left(NoDataFailure());
         }
       },
     );

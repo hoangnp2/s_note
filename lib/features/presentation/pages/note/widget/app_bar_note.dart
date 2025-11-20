@@ -7,9 +7,9 @@ import './widgets.dart';
 
 class AppBarNote extends StatelessWidget implements PreferredSizeWidget {
   const AppBarNote({
-    Key? key,
+    super.key,
     required this.press,
-  }) : super(key: key);
+  });
 
   final VoidCallback press;
 

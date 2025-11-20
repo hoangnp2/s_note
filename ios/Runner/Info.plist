@@ -44,6 +44,8 @@
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
+    <true/>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>This app requires microphone access to enable speech-to-text functionality for voice notes and commands.</string>
 </dict>
 </plist>

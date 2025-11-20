@@ -88,4 +88,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noteArchivedAndUnpinned => 'Note Archive And unpinned';
+
+  @override
+  String get setRemider => 'Set remider';
 }

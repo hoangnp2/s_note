@@ -3,34 +3,32 @@ import 'package:s_note/core/util/errors/failure.dart';
 
 import '../entities/speech_to_text.dart';
 
-/// Repository interface cho Speech to Text functionality
+/// Repository interface for Speech to Text functionality
 abstract class SpeechToTextRepository {
-  /// Khởi tạo speech to text service
+  /// Initialize speech to text service
   Future<Either<Failure, bool>> initialize();
 
-  /// Kiểm tra quyền truy cập microphone
+  /// Check microphone access permission
   Future<Either<Failure, bool>> checkPermission();
 
-  /// Yêu cầu quyền truy cập microphone
-  Future<Either<Failure, bool>> requestPermission();
 
-  /// Bắt đầu lắng nghe giọng nói
+  /// Start listening to speech
   Future<Either<Failure, Stream<SpeechToTextResult>>> startListening({
     required SpeechToTextConfig config,
   });
 
-  /// Dừng lắng nghe giọng nói
+  /// Stop listening to speech
   Future<Either<Failure, Unit>> stopListening();
 
-  /// Hủy lắng nghe giọng nói
+  /// Cancel listening to speech
   Future<Either<Failure, Unit>> cancelListening();
 
-  /// Kiểm tra trạng thái hiện tại của speech service
+  /// Check current status of speech service
   Future<Either<Failure, SpeechToTextResult>> getCurrentStatus();
 
-  /// Lấy danh sách các ngôn ngữ được hỗ trợ
+  /// Get list of supported languages
   Future<Either<Failure, List<String>>> getSupportedLocales();
 
-  /// Kiểm tra xem speech service có khả dụng không
+  /// Check if speech service is available
   Future<Either<Failure, bool>> isAvailable();
 }
