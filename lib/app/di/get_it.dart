@@ -12,6 +12,11 @@ import '../../features/domain/usecases/get_note_by_id.dart';
 import '../../features/domain/usecases/get_notes.dart';
 import '../../features/domain/usecases/update_note.dart';
 import '../../features/presentation/blocs/blocs.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import '../../features/data/datasources/notification_local_data_source.dart';
+import '../../features/data/repositories/notification_repository_impl.dart';
+import '../../features/domain/repositories/notification_repository.dart';
+import '../../features/domain/usecases/schedule_notification_use_case.dart';
 
 final gI = GetIt.I;
 
@@ -39,22 +44,31 @@ Future<void> init() async {
   gI.registerLazySingleton(() => AddNoteUsecase(noteRepositories: gI()));
   gI.registerLazySingleton(() => UpdateNoteUsecase(noteRepositories: gI()));
   gI.registerLazySingleton(() => DeleteNoteUsecase(noteRepositories: gI()));
+  gI.registerLazySingleton(() => ScheduleNotificationUseCase(gI()));
 
   //=> Repository
   gI.registerLazySingleton<NoteRepositories>(
     () => NoteRepositoriesImpl(noteLocalDataSourse: gI()),
+  );
+  gI.registerLazySingleton<NotificationRepository>(
+    () => NotificationRepositoryImpl(gI()),
   );
 
   //=> Datasourse
   gI.registerLazySingleton<NoteLocalDataSourse>(
     () => NoteLocalDataSourceWithHiveImpl(),
   );
+  gI.registerLazySingleton<NotificationLocalDataSource>(
+    () => NotificationLocalDataSource(gI()),
+  );
 
   await gI<NoteLocalDataSourse>().initDb();
+  await gI<NotificationLocalDataSource>().init();
 
   //! Core !//
   //! External!//
   final sharedPreferences = await SharedPreferences.getInstance();
   gI.registerLazySingleton(() => sharedPreferences);
+  gI.registerLazySingleton(() => FlutterLocalNotificationsPlugin());
   //
 }
