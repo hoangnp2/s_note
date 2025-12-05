@@ -17,6 +17,10 @@ import '../../features/data/datasources/notification_local_data_source.dart';
 import '../../features/data/repositories/notification_repository_impl.dart';
 import '../../features/domain/repositories/notification_repository.dart';
 import '../../features/domain/usecases/schedule_notification_use_case.dart';
+import '../../features/data/datasources/llama_local_data_source.dart';
+import '../../features/data/repositories/ai_repository_impl.dart';
+import '../../features/domain/repositories/ai_repository.dart';
+import '../../features/domain/usecases/generate_ai_response_use_case.dart';
 
 final gI = GetIt.I;
 
@@ -45,21 +49,24 @@ Future<void> init() async {
   gI.registerLazySingleton(() => UpdateNoteUsecase(noteRepositories: gI()));
   gI.registerLazySingleton(() => DeleteNoteUsecase(noteRepositories: gI()));
   gI.registerLazySingleton(() => ScheduleNotificationUseCase(gI()));
+  gI.registerLazySingleton(() => GenerateAiResponseUseCase(gI()));
 
   //=> Repository
   gI.registerLazySingleton<NoteRepositories>(
     () => NoteRepositoriesImpl(noteLocalDataSourse: gI()),
   );
-  gI.registerLazySingleton<NotificationRepository>(
-    () => NotificationRepositoryImpl(gI()),
+ 
+  gI.registerLazySingleton<AiRepository>(
+    () => AiRepositoryImpl(gI()),
   );
 
   //=> Datasourse
   gI.registerLazySingleton<NoteLocalDataSourse>(
     () => NoteLocalDataSourceWithHiveImpl(),
   );
-  gI.registerLazySingleton<NotificationLocalDataSource>(
-    () => NotificationLocalDataSource(gI()),
+
+  gI.registerLazySingleton<LlamaLocalDataSource>(
+    () => LlamaLocalDataSource(),
   );
 
   await gI<NoteLocalDataSourse>().initDb();
